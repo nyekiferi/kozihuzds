@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kozis huzas</title>
+    </head>
+
+    <body>
+        <h1>Kozis huzas</h1>
+        <label for="nev">Add megy a nevedet:</label>
+        <input type="text" id="nev">
+        <input type="button" id="gomb" value="Huzas" onclick="huzas(), eredmeny()">
+        <p id="huzott"></p>
+
+    </body>
+
+    <script>
+        const request = new XMLHttpRequest()
+
+        function huzas(){
+            request.open("POST", "/huzas", true)
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+            console.log('drawName=' + document.getElementById("nev").value)
+            request.send('drawName=' + document.getElementById("nev").value)
+        }
+
+        async function eredmeny(){
+            await fetch("/eredmeny")
+                .then(res => res.json())
+                .then(data => document.getElementById("huzott").innerHTML = JSON.stringify(data.huzott))
+        }
+    </script>
+</html>
