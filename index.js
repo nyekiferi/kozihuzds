@@ -31,13 +31,11 @@ try {
 
 
 app.post('/huzas', function (req, res) {
-    var index = Math.floor(Math.random() * huzhatok.length)
-    var huzott = huzhatok[index]
+    var huzott
     var nev = req.body.drawName
     if (!tagok.includes(nev)){
         huzas = "Nem vagy tagja a húzós csapatnak :,("
-    }
-    else {
+    } else {
         huzott = map.get(nev);
     }
 })
