@@ -1,6 +1,6 @@
-const tagok = ["Seszti", "Dori", "Mariann", "Vanda", "Laci", "Zsolt atya", "Feca"]
+const tagok = ["Seszti", "Dori", "Mariann", "Vanda", "Laci", "Zsolt atya", "Feca", "Balint", "Mate"]
 
-const huzhatok = ["Seszti", "Dori", "Mariann", "Vanda", "Laci", "Zsolt atya", "Feca"]
+const huzhatok = ["Seszti", "Dori", "Mariann", "Vanda", "Laci", "Zsolt atya", "Feca", "Balint", "Mate"]
 
 const express = require('express')
 const app = express()
@@ -28,7 +28,6 @@ app.post('/huzas', function (req, res) {
         huzhatok.splice(index, 1)
         huzas = huzott
     }
-    console.log(huzhatok)
 })
 
 app.get('/eredmeny', function (req, res) {

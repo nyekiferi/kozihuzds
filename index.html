@@ -19,7 +19,6 @@
         function huzas(){
             request.open("POST", "/huzas", true)
             request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-            console.log('drawName=' + document.getElementById("nev").value)
             request.send('drawName=' + document.getElementById("nev").value)
         }
 
