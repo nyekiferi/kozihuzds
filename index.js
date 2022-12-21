@@ -9,6 +9,8 @@ app.listen(8080)
 
 var map;
 
+var huzott;
+
 //random generátor
 try {
     lista = require('./lista.obj')
