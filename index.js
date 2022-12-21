@@ -34,13 +34,13 @@ app.post('/huzas', function (req, res) {
     var huzott
     var nev = req.body.drawName
     if (!tagok.includes(nev)){
-        huzas = "Nem vagy tagja a húzós csapatnak :,("
+        huzott = "Nem vagy tagja a húzós csapatnak :,("
     } else {
         huzott = map.get(nev);
     }
 })
 
 app.get('/eredmeny', function (req, res) {
-    res.send({'huzott': huzas})
+    res.send({'huzott': huzott})
 })
 
