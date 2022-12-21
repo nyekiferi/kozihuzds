@@ -25,7 +25,7 @@
         async function eredmeny(){
             await fetch("/eredmeny")
                 .then(res => res.json())
-                .then(data => document.getElementById("huzott").innerHTML = JSON.stringify(data.huzott))
+                .then(data => document.getElementById("huzott").innerHTML = JSON.stringify(data.huzott).substring(1, JSON.stringify(data.huzott).length - 1))
         }
     </script>
 </html>

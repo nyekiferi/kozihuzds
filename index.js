@@ -1,48 +1,54 @@
-const tagok = ["Seszti", "Dori", "Mariann", "Vanda", "Laci", "Zsolt atya", "Feca", "Balint", "Mate"]
+const tagok = ["Seszti", "Dóri", "Mariann", "Vanda", "Laci", "Zsolt atya", "Feca", "Bálint", "Máté"]
 
 const express = require('express')
 const app = express()
 
 app.use(express.static(__dirname))
 app.use(express.urlencoded({extended: true}))
-app.listen(8080)
+app.listen(3031)
 
-var map;
+const fs = require('fs');
+
+var map = {};
 
 var huzott;
 
 //random generátor
 try {
-    lista = require('./lista.obj')
-    map = new Map(lista);
+    //load map
+    map = JSON.parse(fs.readFileSync('lista.json', 'utf8'));
 } catch (e) {
     console.log(e)
-    map = new Map();
+    map = {}
     const tagok_random = tagok.sort(() => Math.random() - 0.5);
     for (let i = 0; i < tagok_random.length-1; i++) {
-        map.set(tagok_random[i], tagok_random[i+1]);
+        map[tagok_random[i]] = tagok_random[i+1];
     }
-    map.set(tagok_random[tagok_random.length-1], tagok_random[0]);
-    const obj = Object.fromEntries(map);
-    const fs = require('fs');
-    fs.writeFile('lista.obj', JSON.stringify(obj), (err) => {
-        if (err) throw err;
-        console.log('The file has been saved!');
-    });
+    map[tagok_random[tagok_random.length-1]] = tagok_random[0];
+    //save map
+    fs.writeFile('lista.json', JSON.stringify(map), function (err) {
+        if (err) return console.log(err);
+        console.log('lista.json saved');
+    }
+    );
 }
 
+console.log(map)
 
 app.post('/huzas', function (req, res) {
-    var huzott
+    huzott
     var nev = req.body.drawName
+    console.log(nev.length)
     if (!tagok.includes(nev)){
         huzott = "Nem vagy tagja a húzós csapatnak :,("
     } else {
-        huzott = map.get(nev);
+        huzott = map[nev]
+        console.log(huzott)
     }
 })
 
 app.get('/eredmeny', function (req, res) {
     res.send({'huzott': huzott})
+    console.log(huzott);
 })
 
