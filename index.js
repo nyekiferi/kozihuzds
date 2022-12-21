@@ -21,7 +21,7 @@ try {
         map.set(tagok_random[i], tagok_random[i+1]);
     }
     map.set(tagok_random[tagok_random.length-1], tagok_random[0]);
-    const obj = Object.fromEntries(map1);
+    const obj = Object.fromEntries(map);
     const fs = require('fs');
     fs.writeFile('lista.obj', JSON.stringify(obj), (err) => {
         if (err) throw err;
