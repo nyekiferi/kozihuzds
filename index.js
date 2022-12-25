@@ -1,4 +1,4 @@
-const tagok = ["Seszti", "Dóri", "Mariann", "Vanda", "Laci", "Zsolt atya", "Feca", "Bálint", "Máté"]
+const tagok = ["Seszti", "Dóri", "Mariann", "Vanda", "Laci", "Zsolt atya", "Feca", "Bálint", "Máté", "Dia"]
 
 const express = require('express')
 const app = express()
