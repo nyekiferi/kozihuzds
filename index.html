@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Kozis huzas</title>
+        <title>Közis húzás</title>
     </head>
 
     <body>
-        <h1>Kozis huzas</h1>
+        <h1>Közis húzás</h1>
         <label for="nev">Add megy a nevedet:</label>
         <input type="text" id="nev">
-        <input type="button" id="gomb" value="Huzas" onclick="huzas(), eredmeny()">
+        <input type="button" id="gomb" value="Húzas" onclick="huzas(), eredmeny()">
         <p id="huzott"></p>
+	<h3>A rendszer a neveket az alábbi formában ismeri: Seszti, Dóri, Mariann, Vanda, Laci, Zsolt atya, Feca, Bálint, Máté, Dia</h3>
+	<h2 style="color:red">Nem ér megnézni másét.. Csak magatoknak lövitek le :| Jövőre meg rakunk rá vmi jó kis védelmet</h2>
 
     </body>
 
@@ -25,7 +27,7 @@
         async function eredmeny(){
             await fetch("/eredmeny")
                 .then(res => res.json())
-                .then(data => document.getElementById("huzott").innerHTML = JSON.stringify(data.huzott))
+                .then(data => document.getElementById("huzott").innerHTML = JSON.stringify(data.huzott).substring(1, JSON.stringify(data.huzott).length - 1))
         }
     </script>
 </html>
